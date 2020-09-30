@@ -874,7 +874,7 @@ class Table(collections.abc.MutableMapping):
             # Coerce a single value to a sequence
             if not _is_non_string_iterable(values):
                 values = [values] * max(self.num_rows, 1)
-            values = np.array(tuple(values))
+            values = np.array(tuple(values), dtype=object)
 
         if self.num_rows != 0 and len(values) != self.num_rows:
             raise ValueError('Column length mismatch. New column does not have '
@@ -1419,7 +1419,7 @@ class Table(collections.abc.MutableMapping):
             columns, labels = [], []
             for i, label in enumerate(self.labels):
                 labels.append(_collected_label(collect, label))
-                c = [collect(np.array([row[i] for row in groups[k]])) for k in keys]
+                c = [collect(np.array([row[i] for row in groups[k]], dtype=object)) for k in keys]
                 columns.append(c)
 
         grouped = type(self)().with_columns(zip(labels, columns))
