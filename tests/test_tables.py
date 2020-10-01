@@ -6,7 +6,7 @@ import numpy as np
 from numpy.testing import assert_array_equal
 from datascience import *
 import pandas as pd
-
+np.warnings.filterwarnings('error', category=np.VisibleDeprecationWarning) 
 
 #########
 # Utils #

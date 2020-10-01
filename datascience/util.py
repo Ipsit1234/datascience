@@ -37,7 +37,9 @@ def make_array(*elements):
         # Specifically added for Windows machines where the default 
         # integer is int32 - see GH issue #339.
         return np.array(elements, dtype="int64")
-    return np.array(elements, dtype=object)
+    # elif not elements:
+    #     return np.array(elements, dtype=object)
+    return np.array(elements)
 
 
 def percentile(p, arr=None):
